@@ -3,7 +3,8 @@
    Three.js 3D Topology · Chart.js · SSE Streaming
    ═══════════════════════════════════════════════════════════════ */
 
-const API = 'http://localhost:5000/api';
+// API endpoint - uses environment variable in production
+const API = window.API_ENDPOINT || 'http://localhost:5000/api';
 
 // ═══════════════════════════════════════════════════════════════
 //  ENHANCED NAVBAR — Scroll shadow · Active link · Mobile menu
