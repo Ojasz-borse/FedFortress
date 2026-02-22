@@ -7,7 +7,7 @@
     }
   ],
   "env": {
-    "API_ENDPOINT": "https://fedfortress-backend.onrender.com/api"
+    "API_ENDPOINT": "https://fedfortress.onrender.com/api"
   },
   "routes": [
     {
