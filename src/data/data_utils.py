@@ -11,7 +11,7 @@ import torchvision.transforms as transforms
 
 
 def load_cifar10(data_dir: str = './data', train: bool = True, 
-                 download: bool = True) -> torchvision.datasets.CIFAR10:
+                 download: bool = True, quick_mode: bool = False) -> torchvision.datasets.CIFAR10:
     """
     Load CIFAR-10 dataset.
     
@@ -19,6 +19,7 @@ def load_cifar10(data_dir: str = './data', train: bool = True,
         data_dir: Directory to store/load data
         train: Whether to load training or test set
         download: Whether to download if not present
+        quick_mode: If True, use subset for faster testing
         
     Returns:
         CIFAR10 dataset object
@@ -35,6 +36,12 @@ def load_cifar10(data_dir: str = './data', train: bool = True,
         download=download,
         transform=transform
     )
+    
+    # Quick mode: use only a subset for faster testing
+    if quick_mode:
+        subset_size = min(1000, len(dataset))
+        indices = np.random.permutation(len(dataset))[:subset_size]
+        dataset = Subset(dataset, indices)
     
     return dataset
 
