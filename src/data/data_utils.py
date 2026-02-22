@@ -11,7 +11,8 @@ import torchvision.transforms as transforms
 
 
 def load_cifar10(data_dir: str = './data', train: bool = True, 
-                 download: bool = True, quick_mode: bool = False) -> torchvision.datasets.CIFAR10:
+                 download: bool = True, quick_mode: bool = False,
+                 max_samples: int = None, use_augmentation: bool = True) -> torchvision.datasets.CIFAR10:
     """
     Load CIFAR-10 dataset.
     
@@ -20,15 +21,26 @@ def load_cifar10(data_dir: str = './data', train: bool = True,
         train: Whether to load training or test set
         download: Whether to download if not present
         quick_mode: If True, use subset for faster testing
+        max_samples: Maximum number of samples to use
+        use_augmentation: Whether to use data augmentation
         
     Returns:
         CIFAR10 dataset object
     """
-    transform = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize((0.4914, 0.4822, 0.4465), 
-                           (0.2470, 0.2435, 0.2616))
-    ])
+    if use_augmentation:
+        transform = transforms.Compose([
+            transforms.RandomHorizontalFlip(),
+            transforms.RandomCrop(32, padding=4),
+            transforms.ToTensor(),
+            transforms.Normalize((0.4914, 0.4822, 0.4465), 
+                               (0.2470, 0.2435, 0.2616))
+        ])
+    else:
+        transform = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize((0.4914, 0.4822, 0.4465), 
+                               (0.2470, 0.2435, 0.2616))
+        ])
     
     dataset = torchvision.datasets.CIFAR10(
         root=data_dir,
@@ -41,6 +53,10 @@ def load_cifar10(data_dir: str = './data', train: bool = True,
     if quick_mode:
         subset_size = min(1000, len(dataset))
         indices = np.random.permutation(len(dataset))[:subset_size]
+        dataset = Subset(dataset, indices)
+    # Max samples limit
+    elif max_samples is not None and max_samples < len(dataset):
+        indices = np.random.permutation(len(dataset))[:max_samples]
         dataset = Subset(dataset, indices)
     
     return dataset
