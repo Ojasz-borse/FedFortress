@@ -1,3 +1,23 @@
-﻿numpy>=1.21.0
-scikit-learn>=1.0.0
-matplotlib>=3.5.0
+﻿# Core ML & Data
+numpy>=1.26.0
+pandas>=2.0
+scikit-learn>=1.3
+
+# Deep Learning
+torch>=2.1.0
+torchvision>=0.16.0
+
+# Visualization
+matplotlib>=3.7
+seaborn>=0.12
+plotly>=5.15
+
+# Web Framework (API Server)
+Flask>=3.0.0
+flask-cors>=4.0
+
+# Dashboard
+streamlit>=1.28
+
+# ASGI Server (optional, for production)
+uvicorn>=0.23
