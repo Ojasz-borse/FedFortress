@@ -3,8 +3,10 @@
    Three.js 3D Topology · Chart.js · SSE Streaming
    ═══════════════════════════════════════════════════════════════ */
 
-// API endpoint - uses environment variable in production
-const API = window.API_ENDPOINT || 'http://localhost:5000/api';
+// API endpoint - production URL for hosted site, localhost for development
+const isLocalhost = window.location.hostname === 'localhost' || 
+                    window.location.hostname === '127.0.0.1';
+const API = isLocalhost ? 'http://localhost:5000/api' : 'https://fedfortress.onrender.com/api';
 
 // ═══════════════════════════════════════════════════════════════
 //  ENHANCED NAVBAR — Scroll shadow · Active link · Mobile menu
