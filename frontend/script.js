@@ -1120,6 +1120,10 @@ function checkAPIStatus() {
     const txt = document.getElementById('api-status-text');
     if (!dot || !txt) return;
 
+    // Check if running on localhost (development) or hosted
+    const isLocalhost = window.location.hostname === 'localhost' || 
+                        window.location.hostname === '127.0.0.1';
+    
     fetch(`${API}/status`, { method: 'GET' })
         .then(res => res.json())
         .then(data => {
@@ -1136,7 +1140,8 @@ function checkAPIStatus() {
         .catch(() => {
             dot.classList.remove('connected');
             dot.classList.add('disconnected');
-            txt.textContent = 'Disconnected';
+            // Show different message for hosted vs local
+            txt.textContent = isLocalhost ? 'Disconnected' : 'Backend Required';
         });
 }
 
