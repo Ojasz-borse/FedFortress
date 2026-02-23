@@ -4,9 +4,9 @@
    ═══════════════════════════════════════════════════════════════ */
 
 // API endpoint - production URL for hosted site, localhost for development
-const isLocalhost = window.location.hostname === 'localhost' || 
+const isLocalhost = window.location.hostname === 'localhost' ||
                     window.location.hostname === '127.0.0.1';
-const API = isLocalhost ? 'http://localhost:5000/api' : 'https://fedfortress.onrender.com/api';
+const API = isLocalhost ? 'http://localhost:5000/api' : 'https://fed-fortress.vercel.app/api';
 
 // ═══════════════════════════════════════════════════════════════
 //  ENHANCED NAVBAR — Scroll shadow · Active link · Mobile menu

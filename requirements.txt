@@ -1,23 +1,7 @@
-﻿# Core ML & Data
+﻿Flask
+flask-cors
 numpy
 pandas
 scikit-learn
-
-# Deep Learning
 torch
 torchvision
-
-# Visualization
-matplotlib
-seaborn
-plotly
-
-# Web Framework
-Flask
-flask-cors
-
-# Dashboard
-streamlit
-
-# Server
-uvicorn

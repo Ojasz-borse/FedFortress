@@ -2,19 +2,18 @@
   "version": 2,
   "builds": [
     {
+      "src": "api/index.py",
+      "use": "@vercel/python"
+    },
+    {
       "src": "frontend/**",
       "use": "@vercel/static"
     }
   ],
-  "env": {
-    "API_ENDPOINT": "https://fedfortress.onrender.com/api"
-  },
   "routes": [
     {
       "src": "/api/(.*)",
-      "headers": {
-        "Access-Control-Allow-Origin": "*"
-      }
+      "dest": "api/index.py"
     },
     {
       "src": "/(.*)",
